@@ -11,7 +11,6 @@ public enum GraphDragState {
 @usableFromInline
 struct GraphDragModifier: ViewModifier {
 
-    @inlinable
     public var dragGesture: some Gesture {
         DragGesture(
             minimumDistance: Self.minimumDragDistance,
@@ -21,12 +20,10 @@ struct GraphDragModifier: ViewModifier {
         .onEnded(onEnded)
     }
 
-    @inlinable
     public func body(content: Content) -> some View {
         content.gesture(dragGesture)
     }
 
-    @inlinable
     @State
     public var dragState: GraphDragState?
 
@@ -36,7 +33,7 @@ struct GraphDragModifier: ViewModifier {
     @usableFromInline
     let action: ((GraphDragState?) -> Void)?
 
-    @inlinable
+    @usableFromInline
     init(
         graphProxy: GraphProxy,
         action: ((GraphDragState?) -> Void)? = nil
@@ -51,7 +48,6 @@ struct GraphDragModifier: ViewModifier {
     @inlinable
     static var minimumAlphaAfterDrag: CGFloat { 0.5 }
 
-    @inlinable
     public func onEnded(
         value: DragGesture.Value
     ) {
@@ -74,7 +70,6 @@ struct GraphDragModifier: ViewModifier {
         }
     }
 
-    @inlinable
     public func onChanged(
         value: DragGesture.Value
     ) {
